@@ -12,10 +12,6 @@ import statsmodels.formula.api as smf
 import statsmodels.api as sm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import Ridge
-import seaborn as sn
-import matplotlib.pyplot as plt 
-from yellowbrick.regressor import PredictionError, ResidualsPlot
-from pylab import savefig
 from sklearn.metrics import r2_score as r2
 
 def train(dataset):
@@ -50,24 +46,3 @@ def train(dataset):
         #model.save("model.h5")
         pickle.dump(model,"model.pkl")
         return jsonify({'message': 'The model was saved locally.'}), 200
-    
-    # Images
-    image_repo = os.environ['IMAGE_REPO']
-    image_path1 = os.path.join(image_repo, "image1.png")
-    image_path2 = os.path.join(image_repo, "image2.png")
-    correlation_matrix = dataset[['Acres', 'Deck', 'GaragCap', 'Patio', 'PkgSpacs', 'SoldPrice', 'Taxes', 'TotBed', 'TotBth', 'TotSqf']].corr()
-    chm = sn.heatmap(correlation_matrix, annot=True)
-    figure = chm.get_figure()    
-    visualizer = PredictionError(model)
-    visualizer.fit(X_train, y_train)
-    visualizer.score(X_test, y_test)
-    
-    if image_repo:
-        figure.savefig(image_path2, dpi=75)
-        visualizer.poof(outpath=image_path1, clear_figure=False)
-        logging.info("Saved the images to the location : " + image_repo)
-        return jsonify(text_out), 200
-    else:
-        figure.savefig('image2.png', dpi=75)
-        visualizer.poof(outpath="image1.png", clear_figure=False)
-        return jsonify({'message': 'The images were saved locally.'}), 200
