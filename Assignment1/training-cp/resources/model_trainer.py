@@ -1,5 +1,3 @@
-# MLP for Pima Indians Dataset saved to single file
-# see https://machinelearningmastery.com/save-load-keras-deep-learning-models/
 import logging
 import os
 
