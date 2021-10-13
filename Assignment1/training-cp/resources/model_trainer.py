@@ -12,7 +12,10 @@ import statsmodels.formula.api as smf
 import statsmodels.api as sm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import Ridge
-
+import seaborn as sn
+import matplotlib.pyplot as plt 
+from yellowbrick.regressor import PredictionError, ResidualsPlot
+from pylab import savefig
 from sklearn.metrics import r2_score as r2
 
 def train(dataset):
@@ -22,6 +25,28 @@ def train(dataset):
     X = dataset[['Acres', 'Deck', 'GaragCap', 'Patio', 'PkgSpacs', 'Taxes', 'TotBed', 'TotBth', 'TotSqf']]
     y = dataset['SoldPrice']
     X = sm.add_constant(X)
+    
+    image_repo = os.environ['IMAGE_REPO']
+    image_path1 = os.path.join(image_repo, "image1.png")
+    image_path2 = os.path.join(image_repo, "image2.png")
+    correlation_matrix = dataset[['Acres', 'Deck', 'GaragCap', 'Patio', 'PkgSpacs', 'SoldPrice', 'Taxes', 'TotBed', 'TotBth', 'TotSqf']].corr()
+    chm = sn.heatmap(correlation_matrix, annot=True)
+    figure = chm.get_figure()    
+    visualizer = PredictionError(ridge_reg)
+    visualizer.fit(X_train, y_train)
+    visualizer.score(X_test, y_test)
+    
+    if image_repo:
+        figure.savefig(image_path2, dpi=75)
+        visualizer.poof(outpath=image_path1, clear_figure=False)
+        logging.info("Saved the images to the location : " + image_repo)
+        return jsonify(text_out), 200
+    else:
+        figure.savefig('image2.png', dpi=75)
+        visualizer.poof(outpath="image1.png", clear_figure=False)
+        return jsonify({'message': 'The images were saved locally.'}), 200
+
+
 
     # We now wiull use scikitlearn's train_test_split to split our set into a training and a testing set for our
     # X and y. I will do this in a way to prepare for a 5-fold cross validation. 
