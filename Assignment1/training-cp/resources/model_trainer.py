@@ -36,6 +36,19 @@ def train(dataset):
     model_repo = os.environ['MODEL_REPO']
     model = ridge_reg
     
+    # Images - create filepath using env variale, plot and save correlation matrix and prediction error, save/load locally
+    image_repo = os.environ['IMAGE_REPO']
+    image_path1 = os.path.join(image_repo, "image1.png")
+    image_path2 = os.path.join(image_repo, "image2.png")
+    correlation_matrix = dataset[['Acres', 'Deck', 'GaragCap', 'Patio', 'PkgSpacs', 'SoldPrice', 'Taxes', 'TotBed', 'TotBth', 'TotSqf']].corr()
+    chm = sn.heatmap(correlation_matrix, annot=True)
+    figure = chm.get_figure()    
+    visualizer = PredictionError(model)
+    visualizer.fit(X_train, y_train)
+    visualizer.score(X_test, y_test)
+    figure.savefig(image_path2, dpi=75)
+    visualizer.poof(outpath=image_path1, clear_figure=False)
+    
     if model_repo:
         file_path = os.path.join(model_repo, "model.pkl")
         #model.save(file_path)
