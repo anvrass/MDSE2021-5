@@ -9,3 +9,6 @@ h5py==2.10.0
 requests
 scikit-learn==0.23.1
 statsmodels
+yellowbrick==1.2
+seaborn==0.11.1
+matplotli==3.3.4
