@@ -1,0 +1,29 @@
+1st Container:
+
+sudo docker build -t ipekustunboyaci/trainingdbapi:0.0.1 .
+sudo docker run -p 5005:5005 -d --name=db_api ipekustunboyaci/trainingdbapi:0.0.1
+sudo docker start db_api
+
+2nd Container:
+
+sudo docker build -t ipekustunboyaci/datappapi:0.0.1 .
+sudo docker run -p  5006:5006 -e TRAININGDB_API='http://db_api:5005/training-db/housing' -d --name=datapp_api ipekustunboyaci/datappapi:0.0.1
+---> use the same port number in insomnia(5006)
+
+3rd Container: 
+sudo docker build -t ipekustunboyaci/trainingapi:0.0.1 .
+sudo docker run -p  5000:5000 -v /home/camila_matoba/models:/usr/src/myapp/models -e DB_API='http://datapp_api:5006/db_preprocessing/housing' -d --name=training ipekustunboyaci/trainingapi:0.0.1
+
+4th container:
+sudo docker build -t ipekustunboyaci/predictionapi:0.0.1 .
+sudo docker run -p  5002:5000 -v /home/camila_matoba/models:/usr/src/myapp/models -d --name=predictionAPI ipekustunboyaci/predictionapi:0.0.1
+
+5th Container:
+
+Network:
+sudo docker network create mynetwork
+sudo docker network connect mynetwork db_api
+sudo docker network connect mynetwork datapp_api
+sudo docker network connect mynetwork training
+sudo docker network connect mynetwork predictionAPI
+sudo docker network connect mynetwork 
