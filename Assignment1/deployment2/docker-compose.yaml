@@ -26,7 +26,7 @@ services:
     environment:
       - DB_API=http://datappapi:5006/db_preprocessing/housing
     ports:
-      - 5000:5000
+      - 5001:5000
     volumes:
       - "/home/ipek_ustunboyacioglu/models:/usr/src/myapp/models"
     networks:
