@@ -51,7 +51,7 @@ services:
     depends_on:
       - prediction_service
     environment:
-      -PRED_API=http://prediction_service:5008/prediction-cp/results
+      - PRED_API=http://prediction_service:5008/prediction-cp/results
     ports:
       - 5008:5000
     volumes:
