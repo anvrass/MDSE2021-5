@@ -23,13 +23,13 @@ def predict(dataset):
         file_path = os.path.join(model_repo, "model.pkl")
         #model = load_model(file_path)
         model = pickle.load(open(file_path, 'rb'))
-        #val_set2 = dataset.copy()
+        val_set2 = X_test.copy()
         model_pred = model.predict(X_test)
         #y_classes = result.argmax(axis=-1)
-        #val_set2['class'] = y_classes.tolist()
-        #dic = result.to_dict(orient='records')
-        dic = model_pred.to_dict()
-        text_out = {dic}
+        val_set2['class'] = model_pred.to_list()
+        dic = val_set2.to_dict(orient='records')
+        #dic = model_pred.to_dict()
+        #text_out = {dic}
         return jsonify(dic), 200
     else:
         return jsonify({'message': 'MODEL_REPO cannot be found.'}), 200
