@@ -26,7 +26,7 @@ def predict(dataset):
         val_set2 = X_test.copy()
         model_pred = model.predict(X_test)
         #y_classes = result.argmax(axis=-1)
-        val_set2['class'] = model_pred.to_list()
+        val_set2['class'] = model_pred
         dic = val_set2.to_dict(orient='records')
         #dic = model_pred.to_dict()
         #text_out = {dic}
