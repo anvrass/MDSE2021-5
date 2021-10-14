@@ -45,7 +45,7 @@ services:
       - "/home/ipek_ustunboyacioglu/models:/usr/src/myapp/models"
     networks:
       - mynetwork
-   visualization_service:
+  visualization_service:
     build:
       context: ./../data_visualization
     depends_on:
