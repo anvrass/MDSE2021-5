@@ -1,0 +1,5 @@
+flask==2.0.1
+pandas==1.0.5
+resources
+pickle 
+numpy
