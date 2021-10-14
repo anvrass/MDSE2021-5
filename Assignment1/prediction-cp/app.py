@@ -14,13 +14,8 @@ def predict_perf():
     #training = os.environ['TRAINING']
     #r = requests.get(training)
     # receive the prediction request data as the message body
-    #content = request.get_json()
-    #df = pd.read_json(json.dumps(content), orient='records')
-    db_api = os.environ['DB_API']
-    # Make a GET request to training db service to retrieve the training data/features.
-    r = requests.get(db_api)
-    j = r.json()
-    df = pd.DataFrame.from_dict(j)
+    content = request.get_json()
+    df = pd.read_json(json.dumps(content), orient='records')
     resp = predictor.predict(df)
     return resp
 
