@@ -1,7 +1,7 @@
 import os
 
 from flask import jsonify
-#from keras.models import load_model
+from keras.models import load_model
 import pickle
 import numpy as np
 
