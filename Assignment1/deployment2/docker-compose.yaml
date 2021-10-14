@@ -57,8 +57,19 @@ services:
     volumes:
       - "/home/ipek_ustunboyacioglu/models:/usr/src/myapp/preds"
     networks:
+      - mynetwork   
+  dashboard_service:
+    build:
+      context: ./../dashboard
+    depends_on:
+      - trainingapi
+    ports:
+      - 5009:5008
+    volumes:
+      - "/home/ipek_ustunboyacioglu/models:/usr/src/myapp/models"
+    networks:
       - mynetwork 
-    
+      
     
 
 networks:
