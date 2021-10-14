@@ -45,6 +45,18 @@ services:
       - "/home/ipek_ustunboyacioglu/models:/usr/src/myapp/models"
     networks:
       - mynetwork
+   visualization_service:
+    build:
+      context: ./../data_visualization
+    depends_on:
+      - datappapi
+    environment:
+      - DB_API=http://datappapi:5006/db_preprocessing/housing
+    ports:
+      - 5002:5000
+    networks:
+      - mynetwork
+   
     
 
 networks:
