@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 from flask import Flask, json, request, Response, jsonify
 
 from resources import predictor
