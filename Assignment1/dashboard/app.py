@@ -8,7 +8,7 @@ app.config["DEBUG"] = True
 
 
 @app.route('/dashboard/dash', methods=['POST'])
-def predict_perf():
+def dashing():
     #training = os.environ['TRAINING']
     #r = requests.get(training)
     # receive the prediction request data as the message body
