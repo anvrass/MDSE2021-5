@@ -24,7 +24,8 @@ def read_data(table_name):
     r = requests.get(db_api)
     j = r.json()
     df = pd.DataFrame.from_dict(j)
-    resp = data_cleaner.clean(df)
+    df = data_cleaner.clean(df)
+    resp = Response(df.to_json(orient='records'), status=200, mimetype='application/json')
     return resp
 
 app.run(host='0.0.0.0', port=5006)
