@@ -12,7 +12,6 @@ COPY . .
 EXPOSE 5000
 # Enviroment Variables
 ENV MODEL_REPO=/usr/src/myapp/models
-ENV IMAGE_REPO=/usr/src/myapp/static
 ENV DB_API=http://datapp_api:5006/db_preprocessing/housing
 # Run our App
 CMD ["python3","app.py"]
