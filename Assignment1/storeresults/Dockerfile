@@ -11,7 +11,7 @@ COPY . .
 # Expose the port that our app runs in
 EXPOSE 5000
 # Enviroment Variables
-ENV MODEL_REPO=/usr/src/myapp/models
-ENV PRED_API=http://pred_api:5006/db_preprocessing/housing
+ENV DATA_REPO=/usr/src/myapp/preds
+ENV PRED_API=http://pred_api:5002/db_preprocessing/housing
 # Run our App
 CMD ["python3","app.py"]
