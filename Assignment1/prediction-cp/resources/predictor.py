@@ -8,6 +8,8 @@ import numpy as np
 
 # make prediction
 def predict(dataset):
+    
+    dataset = dataset[['Acres', 'Deck', 'GaragCap', 'Patio', 'PkgSpacs', 'Taxes', 'TotBed', 'TotBth', 'TotSqf']]
     model_repo = os.environ['MODEL_REPO']
     if model_repo:
         file_path = os.path.join(model_repo, "model.pkl")
