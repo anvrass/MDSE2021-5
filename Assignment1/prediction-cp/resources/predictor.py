@@ -28,8 +28,8 @@ def predict(dataset):
         #y_classes = result.argmax(axis=-1)
         #val_set2['class'] = y_classes.tolist()
         #dic = result.to_dict(orient='records')
-        #dic = model_pred.to_dict()
-        #text_out = {dic}
-        return jsonify({'message': 'predicted samples'}), 200
+        dic = model_pred.to_dict()
+        text_out = {dic}
+        return jsonify(dic), 200
     else:
         return jsonify({'message': 'MODEL_REPO cannot be found.'}), 200
