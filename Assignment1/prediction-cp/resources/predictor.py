@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split
 
 # make prediction
 def predict(dataset):
-    dataset = dataset[['Acres', 'Deck', 'GaragCap', 'Patio', 'PkgSpacs', 'Taxes', 'TotBed', 'TotBth', 'TotSqf']]
+    #dataset = dataset[['Acres', 'Deck', 'GaragCap', 'Patio', 'PkgSpacs', 'Taxes', 'TotBed', 'TotBth', 'TotSqf']]
     dataset = sm.add_constant(dataset)
     
     model_repo = os.environ['MODEL_REPO']
