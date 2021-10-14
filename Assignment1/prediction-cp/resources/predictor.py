@@ -6,6 +6,8 @@ import pickle
 import numpy as np
 import statsmodels.api as sm
 
+from sklearn.model_selection import train_test_split
+
 
 # make prediction
 def predict(dataset):
