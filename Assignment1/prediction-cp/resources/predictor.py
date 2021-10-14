@@ -10,7 +10,7 @@ import numpy as np
 def predict(dataset):
     model_repo = os.environ['MODEL_REPO']
     if model_repo:
-        file_path = os.path.join(model_repo, "model.pkl")
+        file_path = os.path.join(model_repo, "model.h5")
         #model = load_model(file_path)
         model = pickle.load(open(file_path, 'rb'))
         #val_set2 = dataset.copy()
