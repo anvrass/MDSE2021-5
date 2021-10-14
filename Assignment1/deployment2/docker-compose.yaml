@@ -45,15 +45,15 @@ services:
       - "/home/ipek_ustunboyacioglu/models:/usr/src/myapp/models"
     networks:
       - mynetwork
-  dashboard:
+  store_service:
     build:
-      context: ./../dashboard
+      context: ./../storeresults
     depends_on:
-      - trainingapi
+      - prediction_service
     ports:
-      - 5008:5008
+      - 5008:5000
     volumes:
-      - "/home/ipek_ustunboyacioglu/models:/usr/src/myapp/models"
+      - "/home/ipek_ustunboyacioglu/models:/usr/src/myapp/results"
     networks:
       - mynetwork 
     
