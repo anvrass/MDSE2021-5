@@ -12,6 +12,6 @@ COPY . .
 EXPOSE 5000
 # Enviroment Variables
 ENV DATA_REPO=/usr/src/myapp/preds
-ENV PRED_API=http://pred_api:5002/db_preprocessing/housing
+ENV PRED_API="http://prediction_service:5008/prediction-cp/results"
 # Run our App
 CMD ["python3","app.py"]
