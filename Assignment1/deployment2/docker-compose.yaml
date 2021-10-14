@@ -13,7 +13,7 @@ services:
     depends_on:
       - database
     environment:
-      - TRAININGDB_API='http://database:5005/training-db/housing'
+      - TRAININGDB_API=http://database:5005/training-db/housing
     ports:
       - 5006:5006
     networks:
@@ -24,7 +24,7 @@ services:
     depends_on:
       - datappapi
     environment:
-      - DB_API='http://datappapi:5006/db_preprocessing/housing'
+      - DB_API=http://datappapi:5006/db_preprocessing/housing
     ports:
       - 5000:5000
     volumes:
