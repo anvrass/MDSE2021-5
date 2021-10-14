@@ -16,7 +16,7 @@ def store(dataset):
         file_path = os.path.join(data_repo, "predictions.txt")
         df.save(file_path)
         logging.info("Saved the predictions to the location : " + data_repo)
-        return jsonify(text_out), 200
+        return jsonify({'message': 'Predictions are saved locally.'}), 200
     else:
         df.save("predictions.txt")
         return jsonify({'message': 'Predictions are saved locally.'}), 200
