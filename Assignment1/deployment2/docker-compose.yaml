@@ -55,7 +55,7 @@ services:
     ports:
       - 5008:5000
     volumes:
-      - "/home/ipek_ustunboyacioglu/models:/usr/src/myapp/results"
+      - "/home/ipek_ustunboyacioglu/models:/usr/src/myapp/preds"
     networks:
       - mynetwork 
     
