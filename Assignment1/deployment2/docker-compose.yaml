@@ -2,14 +2,14 @@ version: '1.28.5'
 services:
   database:
     build:
-      context: ./../../Assignment1/db_container
+      context: ./MDSE2021-5/Assignment1/db_container
     ports:
       - 5005:5005
     networks:
       - mynetwork
   datappapi:
     build:
-      context: ./../../Assignment1/data_pp_container
+      context: ./MDSE2021-5/Assignment1/data_pp_container
     depends_on:
       - database
     environment:
@@ -20,7 +20,7 @@ services:
       - mynetwork   
   trainingapi:
     build:
-      context: ./../../Assignment1/training-cp
+      context: ./MDSE2021-5/Assignment1/training-cp
     depends_on:
       - datappapi
     environment:
