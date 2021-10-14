@@ -63,10 +63,10 @@ def train(dataset):
     # Saving model in a given location provided as an env. variable
     model_repo = os.environ['MODEL_REPO']
     if model_repo:
-        file_path = os.path.join(model_repo, "model.h5")
+        file_path = os.path.join(model_repo, "model.pkl")
         model.save(file_path)
         logging.info("Saved the model to the location : " + model_repo)
         return jsonify(text_out), 200
     else:
-        model.save("model.h5")
+        model.save("model.pkl")
         return jsonify({'message': 'The model was saved locally.'}), 200
