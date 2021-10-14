@@ -1,3 +1,5 @@
+# MLP for Pima Indians Dataset saved to single file
+# see https://machinelearningmastery.com/save-load-keras-deep-learning-models/
 import logging
 import os
 
@@ -10,8 +12,8 @@ import statsmodels.formula.api as smf
 import statsmodels.api as sm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import Ridge
+
 from sklearn.metrics import r2_score as r2
-import seaborn as sn
 
 def train(dataset):
     # We drop Latitude and Longitude from the set as they do little to serve as predictors for price.
@@ -51,31 +53,20 @@ def train(dataset):
     # Using 5-fold cross validation, we tend to average around 0.8 for our R-Squared value.
     # While close and fairly impressive by itself, it is not accurate enough to beat the R-Squared score
     # of List Price vs SoldPrice at 0.991
-    
+
     ridge_reg = Ridge(alpha=10, fit_intercept=True)
     ridge_reg.fit(X_train, y_train)
 
     cols = ['const','Acres', 'Deck', 'GaragCap', 'Patio', 'PkgSpacs', 'Taxes', 'TotBed', 'TotBth', 'TotSqf']
-    #print("Ridge regression model:\n {}+ {}^T . X".format(ridge_reg.intercept_, ridge_reg.coef_))
-    text_out = {print("Ridge regression model:\n {}+ {}^T . X".format(ridge_reg.intercept_, ridge_reg.coef_))}
+    print("Ridge regression model:\n {}+ {}^T . X".format(ridge_reg.intercept_, ridge_reg.coef_))
     pd.Series(ridge_reg.coef_.flatten(), index=cols)
+
+    # We can see that as a result of the regularization, the coeffiecients have normalized to lower values.
+
 
     # Saving model in a given location provided as an env. variable
     model_repo = os.environ['MODEL_REPO']
     model = ridge_reg
-    
-    # Images - create filepath using env variale, plot and save correlation matrix and prediction error, save/load locally
-    image_repo = os.environ['IMAGE_REPO']
-    image_path1 = os.path.join(image_repo, "image1.png")
-    image_path2 = os.path.join(image_repo, "image2.png")
-    correlation_matrix = dataset[['Acres', 'Deck', 'GaragCap', 'Patio', 'PkgSpacs', 'SoldPrice', 'Taxes', 'TotBed', 'TotBth', 'TotSqf']].corr()
-    chm = sn.heatmap(correlation_matrix, annot=True)
-    figure = chm.get_figure()    
-    visualizer = PredictionError(model)
-    visualizer.fit(X_train, y_train)
-    visualizer.score(X_test, y_test)
-    figure.savefig(image_path2, dpi=75)
-    visualizer.poof(outpath=image_path1, clear_figure=False)
     
     if model_repo:
         file_path = os.path.join(model_repo, "model.pkl")
