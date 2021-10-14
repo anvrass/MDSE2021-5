@@ -18,5 +18,15 @@ def predict_perf():
     resp = predictor.predict(df)
     return resp
 
+@app.route('/prediction-cp/results', methods=['GET'])
+def return_predict_perf():  
+    db_api = os.environ['DB_API']
+    # Make a GET request to training db service to retrieve the prediction data/features.
+    r = requests.get(db_api)
+    j = r.json()
+    df = pd.DataFrame.from_dict(j)
+    resp = predictor.predict(df)
+    return resp
+
 
 app.run(host='0.0.0.0', port=5000)
