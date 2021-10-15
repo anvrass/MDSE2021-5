@@ -28,7 +28,7 @@ services:
     ports:
       - 5001:5000
     volumes:
-      - "/home/ipek_ustunboyacioglu/models:/usr/src/myapp/preds"
+      - "/home/ipek_ustunboyacioglu/models:/usr/src/myapp/models"
     networks:
       - mynetwork
   prediction_service:
