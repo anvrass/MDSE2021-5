@@ -10,25 +10,6 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 
 
-@app.route('/', methods=['POST'])
-def main():
-    client = bigquery.Client(project="de2021-325520")  # use your project id
-
-    QUERY = (
-        'SELECT * FROM `de2021-325520.a2_dataset.products` LIMIT 100')  # use the correct project id, etc.
-    query_job = client.query(QUERY)  # API request
-    rows = query_job.result()  # Waits for query to finish
-
-    return flask.redirect(
-        flask.url_for(
-            "results",
-            project_id=query_job.project,
-            job_id=query_job.job_id,
-            location=query_job.location
-        )
-
-    )
-
 
 @app.route('/results', methods=['POST'])
 def results():
