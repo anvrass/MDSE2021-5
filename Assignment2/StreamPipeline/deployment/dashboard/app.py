@@ -11,7 +11,7 @@ app.config["DEBUG"] = True
 
 
 
-@app.route('/results', methods=['POST'])
+@app.route('/results', methods=['GET'])
 def results():
     client = bigquery.Client(project="de2021-325520")  # use your project id
 
