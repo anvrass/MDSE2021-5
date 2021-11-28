@@ -15,7 +15,7 @@ def results():
     client = bigquery.Client(project="de2021-325520")  # use your project id
 
     QUERY = (
-        'SELECT * FROM `de2021-324520.a2dataset.products` LIMIT 100')  # use the correct project id, etc.
+        'SELECT * FROM `de2021-324520.a2_dataset.products` LIMIT 100')  # use the correct project id, etc.
     query_job = client.query(QUERY)  # API request
     rows = query_job.result()
 
