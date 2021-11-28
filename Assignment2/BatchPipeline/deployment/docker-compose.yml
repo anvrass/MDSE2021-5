@@ -89,4 +89,9 @@ services:
     volumes:
       - spark-data:/home/jovyan/data
       - spark-checkpoint:/home/jovyan/checkpoint
+  dashboard:
+    build:
+      context: ./dashboard
+    ports:
+       - "5000:5000"
   
