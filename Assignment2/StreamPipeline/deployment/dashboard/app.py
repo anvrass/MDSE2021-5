@@ -28,7 +28,7 @@ def results():
     #rows = query_job.result()
 
     #for row in rows:
-        output = "Record: " + str(row)
+    #    output = "Record: " + str(row)
     #return output
 
 
