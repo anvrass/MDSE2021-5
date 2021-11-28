@@ -5,3 +5,4 @@ nltk==3.5
 requests
 google-cloud-storage
 bigquery
+google-cloud-bigquery
