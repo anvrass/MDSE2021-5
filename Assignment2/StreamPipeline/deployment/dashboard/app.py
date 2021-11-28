@@ -19,7 +19,7 @@ def results():
     
     table = client.get_table(table_ref)
     
-    df = client.list_rows(table).to_dataframe
+    df = client.list_rows(table).to_dataframe()
     resp = Response(df.to_json(orient='records'), status=200, mimetype='application/json')
     return resp
     #QUERY = (
