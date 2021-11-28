@@ -5,6 +5,7 @@ import flask
 import pandas as pd
 import requests
 from flask import Flask
+from google.cloud import bigquery
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
