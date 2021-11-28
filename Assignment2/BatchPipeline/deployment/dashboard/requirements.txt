@@ -1,0 +1,8 @@
+flask==2.0.1
+pandas==1.1.4
+numpy==1.19.1
+nltk==3.5
+requests
+google-cloud-storage
+bigquery
+google-cloud-bigquery
